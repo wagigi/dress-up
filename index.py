@@ -3,9 +3,10 @@ import datetime
 
 who = "world"
 
+
 def handler(event, context):
     data = {
-        'output': f'Hello {who}',
+        'output': 'Hello {who}'.format(who=who),
         'timestamp': datetime.datetime.utcnow().isoformat()
     }
     return {'statusCode': 200,
