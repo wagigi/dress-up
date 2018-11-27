@@ -1,10 +1,11 @@
 import json
 import datetime
 
+who = "world"
 
 def handler(event, context):
     data = {
-        'output': 'Hello World',
+        'output': f'Hello {who}',
         'timestamp': datetime.datetime.utcnow().isoformat()
     }
     return {'statusCode': 200,
