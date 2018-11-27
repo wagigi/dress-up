@@ -1,7 +1,7 @@
 import json
 import datetime
 
-who = "world"
+who = "singe"
 
 
 def handler(event, context):
