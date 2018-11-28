@@ -21,7 +21,7 @@ def handler(event, context):
 
     retour = {
         'output': 'Tu habites à {ville}'.format(ville=data['ville']),
-        'meteo_rand': json.dumps(reponse),
+        'meteo_rand': json.loads(reponse.content.decode('utf-8')),
         'timestamp': datetime.datetime.utcnow().isoformat()
     }
 
