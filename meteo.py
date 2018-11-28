@@ -1,8 +1,9 @@
 import json
 import datetime
 import logging
+import requests
 
-who = "gagi"
+meteo_url = 'https://www.prevision-meteo.ch/services/json/'
 
 
 def handler(event, context):
@@ -16,8 +17,11 @@ def handler(event, context):
         return {'statusCode': 400,
                 'body': json.dumps({'error_message': 'Ville non transmise'})}
 
+    reponse = requests.get(meteo_url + data['ville'])
+
     retour = {
         'output': 'Tu habites à {ville}'.format(ville=data['ville']),
+        'meteo_rand': reponse,
         'timestamp': datetime.datetime.utcnow().isoformat()
     }
 
