@@ -13,7 +13,7 @@ def handler(event, context):
         return {'statusCode': 400,
                 'body': json.dumps({'error_message': 'Ville non transmise'})}
     if not data['ville']:
-        logging.error('No data in ville - text was empty {}'.format(data))
+        logging.error('No data in ville - text was empty {}'.format(json.dumps(data)))
         return {'statusCode': 400,
                 'body': json.dumps({'error_message': 'Ville non transmise'})}
 
@@ -21,7 +21,8 @@ def handler(event, context):
 
     meteo = json.loads(reponse.content.decode('utf-8'))
 
-    if meteo["errors"]:
+    if "errors" in meteo:
+        logging.error("Error with meteo API {errors}".format(errors=json.dumps(meteo)))
         return {'statusCode': 418,
                 'body': json.dumps(meteo),
                 'headers': {'Content-Type': 'application/json'}}
