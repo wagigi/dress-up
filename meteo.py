@@ -20,6 +20,12 @@ def handler(event, context):
     reponse = requests.get(meteo_url + data['ville'])
 
     meteo = json.loads(reponse.content.decode('utf-8'))
+
+    if meteo["errors"]:
+        return {'statusCode': 418,
+                'body': json.dumps(meteo),
+                'headers': {'Content-Type': 'application/json'}}
+
     temp_day_min = meteo["fcst_day_0"]["tmin"]
     temp_day_max = meteo["fcst_day_0"]["tmax"]
     condition = meteo["fcst_day_0"]["condition_key"]
