@@ -52,3 +52,17 @@ Resources:
           Properties:
             Path: /gagi
             Method: get
+  meteo:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: meteo.handler
+      Runtime: python3.6
+      Role:
+        Fn::ImportValue:
+          !Join ['-', [!Ref 'ProjectId', !Ref 'AWS::Region', 'LambdaTrustRole']]
+      Events:
+        GetEvent:
+          Type: Api
+          Properties:
+            Path: /meteo
+            Method: post
