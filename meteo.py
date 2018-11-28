@@ -19,9 +19,16 @@ def handler(event, context):
 
     reponse = requests.get(meteo_url + data['ville'])
 
+    meteo = json.loads(reponse.content.decode('utf-8'))
+    temp_day_min = meteo["fcst_day_0"]["tmin"]
+    temp_day_max = meteo["fcst_day_0"]["tmax"]
+    condition = meteo["fcst_day_0"]["condition_key"]
+
     retour = {
         'output': 'Tu habites à {ville}'.format(ville=data['ville']),
-        'meteo_rand': json.loads(reponse.content.decode('utf-8')),
+        'temp_min': temp_day_min,
+        'temp_max': temp_day_max,
+        'meteo': condition,
         'timestamp': datetime.datetime.utcnow().isoformat()
     }
 
