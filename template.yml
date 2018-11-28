@@ -69,7 +69,7 @@ Resources:
   workshop:
     Type: AWS::Serverless::Function
     Properties:
-      Handler: meteo.handler
+      Handler: workshop.handler
       Runtime: python3.6
       Role:
         Fn::ImportValue:
