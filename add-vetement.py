@@ -1,7 +1,6 @@
 import json
 import datetime
 import logging
-import postgresql
 import postgresql.driver
 
 db = postgresql.driver.connect(

@@ -16,14 +16,8 @@ def handler(event, context):
 
     id_user = data["id_user"]
 
-    vetements = db.prepare(f"""
-    select v.id_vetement, v.nom_vetement, c.couleur, v.note_chaleur, e.endroit, v.jourx_max_port, v.avantage FROM vetement as v, 
-    couleur as c, endroit_corps as e
-    WHERE proprietaire = {id_user} and c.id_couleur = v.couleur and e.id = v.endroit_du_corps
-    """)
-
     user = db.prepare(f"""
-    select nom, prenom FROM "user"
+    select * FROM "user"
     WHERE id_user = {id_user}
     """)
 
@@ -38,23 +32,11 @@ def handler(event, context):
                 'body': json.dumps(retour),
                 'headers': {'Content-Type': 'application/json'}}
 
-    les_vetements = vetements()
-
-    garde_robe = {}
-
-    for vetement in les_vetements:
-        print(vetement)
-        garde_robe[vetement[1]] = {"id": vetement[0],
-                                   "couleur": vetement[2],
-                                   "note chaleur": vetement[3],
-                                   "endroit": vetement[4],
-                                   "jours_max_port": vetement[5],
-                                   "avantage": vetement[6]
-                                   }
-
     retour = {"Nom": propri[0][0],
               "Prenom": propri[0][1],
-              "garde_robe": garde_robe}
+              "sexe": propri[0][2],
+              "frillosite": propri[0][3],
+              "ville": propri[0][4]}
 
     return {'statusCode': 200,
             'body': json.dumps(retour),
