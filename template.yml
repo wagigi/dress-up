@@ -80,7 +80,7 @@ Resources:
           Properties:
             Path: /workshop
             Method: get
-  addvetement:
+  vetement:
     Type: AWS::Serverless::Function
     Properties:
       Handler: add-vetement.handler
