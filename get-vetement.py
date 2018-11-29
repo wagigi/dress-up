@@ -52,8 +52,8 @@ def handler(event, context):
                                    "avantage": vetement[6]
                                    }
 
-    retour = {"Nom": propri[0][0],
-              "Prenom": propri[0][1],
+    retour = {"Nom": propri[0][0].capitalize(),
+              "Prenom": propri[0][1].capitalize(),
               "garde_robe": garde_robe}
 
     return {'statusCode': 200,
