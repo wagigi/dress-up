@@ -134,5 +134,5 @@ Resources:
         GetEvent:
           Type: Api
           Properties:
-            Path: /vetement
-            Method: get
+            Path: /vetement-user
+            Method: post
