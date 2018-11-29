@@ -32,6 +32,8 @@ def handler(event, context):
     RETURNING id_vetement;
     """)
 
+    id_vetement = requete()[0][0]
+
     return {'statusCode': 200,
-            'body': {"id_vetement": requete()[0][0]},
+            'body': {"id_vetement": id_vetement},
             'headers': {'Content-Type': 'application/json'}}
