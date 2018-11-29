@@ -32,11 +32,11 @@ def handler(event, context):
                 'body': json.dumps(retour),
                 'headers': {'Content-Type': 'application/json'}}
 
-    retour = {"Nom": propri[0][0],
-              "Prenom": propri[0][1],
-              "sexe": propri[0][2],
-              "frillosite": propri[0][3],
-              "ville": propri[0][4]}
+    retour = {"Nom": propri[0][1],
+              "Prenom": propri[0][2],
+              "sexe": propri[0][3],
+              "frillosite": propri[0][4],
+              "ville": propri[0][5]}
 
     return {'statusCode': 200,
             'body': json.dumps(retour),
