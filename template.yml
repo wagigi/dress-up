@@ -108,3 +108,17 @@ Resources:
           Properties:
             Path: /vetement
             Method: post
+  delvetement:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: del-vetement.handler
+      Runtime: python3.6
+      Role:
+        Fn::ImportValue:
+          !Join ['-', [!Ref 'ProjectId', !Ref 'AWS::Region', 'LambdaTrustRole']]
+      Events:
+        GetEvent:
+          Type: Api
+          Properties:
+            Path: /vetement
+            Method: delete
