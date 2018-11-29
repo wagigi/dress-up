@@ -21,16 +21,17 @@ def handler(event, context):
     couleur = data["couleur"]
     endroit = data["endroit"]
 
-    db.execute(f"""
-    INSERT INTO vetement (nom_vetement, note_chaleur, jourx_max_port, endroit_du_corps, couleur) 
+    requete = db.prepare(f"""
+    INSERT INTO vetement (nom_vetement, note_chaleur, jourx_max_port, endroit_du_corps, couleur)
     VALUES ('{nom}',
             {note_chaleur},
             {jour_max},
             {endroit},
             {couleur}
-    );
+    )
+    RETURNING id_vetement;
     """)
 
     return {'statusCode': 200,
-            'body': json.dumps(data),
+            'body': {"id_vetement": requete()[0][0]},
             'headers': {'Content-Type': 'application/json'}}
