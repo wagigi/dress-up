@@ -93,4 +93,18 @@ Resources:
           Type: Api
           Properties:
             Path: /vetement
+            Method: put
+  choixvetement:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: choix-vetement.handler
+      Runtime: python3.6
+      Role:
+        Fn::ImportValue:
+          !Join ['-', [!Ref 'ProjectId', !Ref 'AWS::Region', 'LambdaTrustRole']]
+      Events:
+        GetEvent:
+          Type: Api
+          Properties:
+            Path: /vetement
             Method: post

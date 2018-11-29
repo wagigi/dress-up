@@ -6,7 +6,7 @@ who = "gagi"
 
 def handler(event, context):
     data = {
-        'output': 'Tu es un {who}'.format(who=who),
+        'output': f'Tu es un {who}',
         'timestamp': datetime.datetime.utcnow().isoformat()
     }
     return {'statusCode': 200,

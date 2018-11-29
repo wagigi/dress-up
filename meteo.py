@@ -13,7 +13,7 @@ def handler(event, context):
         return {'statusCode': 400,
                 'body': json.dumps({'error_message': 'Ville non transmise'})}
     if not data['ville']:
-        logging.error('No data in ville - text was empty {}'.format(json.dumps(data)))
+        logging.error(f'No data in ville - text was empty {json.dumps(data)}')
         return {'statusCode': 400,
                 'body': json.dumps({'error_message': 'Ville non transmise'})}
 
@@ -32,7 +32,7 @@ def handler(event, context):
     condition = meteo["fcst_day_0"]["condition_key"]
 
     retour = {
-        'output': 'Tu habites à {ville}'.format(ville=data['ville']),
+        'output': f'Tu habites à {data["ville"]}',
         'temp_min': temp_day_min,
         'temp_max': temp_day_max,
         'meteo': condition,
