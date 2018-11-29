@@ -21,16 +21,15 @@ def handler(event, context):
     couleur = data["couleur"]
     endroit = data["endroit"]
 
-    db.execute("""
+    db.execute(f"""
     INSERT INTO vetement (nom_vetement, note_chaleur, jourx_max_port, endroit_du_corps, couleur) 
-    VALUES ('{nom_vetement}',
+    VALUES ('{nom}',
             {note_chaleur},
-            {jourx_max_port},
-            {endroit_du_corps},
+            {jour_max},
+            {endroit},
             {couleur}
     );
-    """.format(nom_vetement=nom, note_chaleur=note_chaleur, jourx_max_port=jour_max, endroit_du_corps=endroit,
-               couleur=couleur))
+    """)
 
     return {'statusCode': 200,
             'body': json.dumps(data),
