@@ -18,7 +18,7 @@ def handler(event, context):
     id_user = data["id_user"]
 
     vetements = db.prepare(f"""
-    select v.id_vetement, v.nom_vetement, c.couleur, v.note_chaleur, e.endroit, v.jourx_max_port FROM vetement as v, 
+    select v.id_vetement, v.nom_vetement, c.couleur, v.note_chaleur, e.endroit, v.jourx_max_port, v.avantage FROM vetement as v, 
     couleur as c, endroit_corps as e
     WHERE proprietaire = {id_user} and c.id_couleur = v.couleur and e.id = v.endroit_du_corps
     """)
@@ -49,7 +49,8 @@ def handler(event, context):
                                    "couleur": vetement[2],
                                    "note chaleur": vetement[3],
                                    "endroit": vetement[4],
-                                   "jours_max_port": vetement[5]
+                                   "jours_max_port": vetement[5],
+                                   "avantage": vetement[6]
                                    }
 
     retour = {"Nom": propri[0][0],
