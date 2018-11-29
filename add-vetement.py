@@ -32,8 +32,11 @@ def handler(event, context):
     RETURNING id_vetement;
     """)
 
-    id_vetement = requete()[0][0]
+    retour = {
+        'id_vetement': requete()[0][0],
+        'timestamp': datetime.datetime.utcnow().isoformat()
+    }
 
     return {'statusCode': 200,
-            'body': {'id_vetement': 'hard'},
+            'body': json.dumps(retour),
             'headers': {'Content-Type': 'application/json'}}
