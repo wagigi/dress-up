@@ -82,12 +82,18 @@ def handler(event, context):
     else:
         chaleur_rech = 3
 
-    tenue = []
+    tenue = {}
     habits_choisi = []
     for vetement in les_vetements:
         if vetement[4] not in habits_choisi:
-            if vetement[3] == chaleur_rech or vetement[3] == chaleur_rech - 1:
-                tenue.append(vetement)
+            if vetement[3] == chaleur_rech or vetement[3] == chaleur_rech-1:
+                tenue[vetement[1]] = {"id": vetement[0],
+                                   "couleur": vetement[2],
+                                   "note chaleur": vetement[3],
+                                   "endroit": vetement[4],
+                                   "jours_max_port": vetement[5],
+                                   "avantage": vetement[6]
+                                   }
                 habits_choisi.append(vetement[4])
 
     while 'jambes' not in habits_choisi:
@@ -95,7 +101,13 @@ def handler(event, context):
         for vetement in les_vetements:
             if vetement[4] not in habits_choisi:
                 if vetement[3] == chaleur_rech - indice_revu:
-                    tenue.append(vetement)
+                    tenue[vetement[1]] = {"id": vetement[0],
+                                   "couleur": vetement[2],
+                                   "note chaleur": vetement[3],
+                                   "endroit": vetement[4],
+                                   "jours_max_port": vetement[5],
+                                   "avantage": vetement[6]
+                                   }
                     habits_choisi.append(vetement[4])
         indice_revu += 1
 
@@ -104,7 +116,13 @@ def handler(event, context):
         for vetement in les_vetements:
             if vetement[4] not in habits_choisi:
                 if vetement[3] == chaleur_rech - indice_revu:
-                    tenue.append(vetement)
+                    tenue[vetement[1]] = {"id": vetement[0],
+                                   "couleur": vetement[2],
+                                   "note chaleur": vetement[3],
+                                   "endroit": vetement[4],
+                                   "jours_max_port": vetement[5],
+                                   "avantage": vetement[6]
+                                   }
                     habits_choisi.append(vetement[4])
         indice_revu += 1
 
