@@ -36,7 +36,7 @@ def handler(event, context):
               "Prenom": propri[0][2].capitalize(),
               "sexe": propri[0][3],
               "frillosite": propri[0][4],
-              "ville": propri[0][5].capitalize()}
+              "ville": propri[0][5].lower()}
 
     return {'statusCode': 200,
             'body': json.dumps(retour),

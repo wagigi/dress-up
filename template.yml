@@ -150,3 +150,17 @@ Resources:
           Properties:
             Path: /user
             Method: post
+  changeville:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: ville.handler
+      Runtime: python3.6
+      Role:
+        Fn::ImportValue:
+          !Join ['-', [!Ref 'ProjectId', !Ref 'AWS::Region', 'LambdaTrustRole']]
+      Events:
+        GetEvent:
+          Type: Api
+          Properties:
+            Path: /ville
+            Method: post
