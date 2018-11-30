@@ -25,15 +25,6 @@ def handler(event, context):
     else:
         id_user = data["id_user"]
 
-    if 'ville' not in data:
-        logging.error('No meteo')
-        return {'statusCode': 400,
-                'body': json.dumps({'error_message': 'Ville non transmise'})}
-    if not data['ville']:
-        logging.error(f'No data in ville - text was empty {json.dumps(data)}')
-        return {'statusCode': 400,
-                'body': json.dumps({'error_message': 'Ville non transmise'})}
-
     vetements = db.prepare(f"""
     select v.id_vetement, v.nom_vetement, c.couleur, v.note_chaleur, e.endroit, v.jourx_max_port, v.avantage 
     FROM vetement as v, couleur as c, endroit_corps as e
