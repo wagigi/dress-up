@@ -19,39 +19,6 @@ Parameters:
 #       Type: Canary10Percent5Minutes
 
 Resources:
-  HelloWorld:
-    Type: AWS::Serverless::Function
-    Properties:
-      Handler: index.handler
-      Runtime: python3.6
-      Role:
-        Fn::ImportValue:
-          !Join ['-', [!Ref 'ProjectId', !Ref 'AWS::Region', 'LambdaTrustRole']]
-      Events:
-        GetEvent:
-          Type: Api
-          Properties:
-            Path: /
-            Method: get
-        PostEvent:
-          Type: Api
-          Properties:
-            Path: /
-            Method: post
-  gagi:
-    Type: AWS::Serverless::Function
-    Properties:
-      Handler: gagi.handler
-      Runtime: python3.6
-      Role:
-        Fn::ImportValue:
-          !Join ['-', [!Ref 'ProjectId', !Ref 'AWS::Region', 'LambdaTrustRole']]
-      Events:
-        GetEvent:
-          Type: Api
-          Properties:
-            Path: /gagi
-            Method: get
   meteo:
     Type: AWS::Serverless::Function
     Properties:
@@ -66,20 +33,6 @@ Resources:
           Properties:
             Path: /meteo
             Method: post
-  workshop:
-    Type: AWS::Serverless::Function
-    Properties:
-      Handler: workshop.handler
-      Runtime: python3.6
-      Role:
-        Fn::ImportValue:
-          !Join ['-', [!Ref 'ProjectId', !Ref 'AWS::Region', 'LambdaTrustRole']]
-      Events:
-        GetEvent:
-          Type: Api
-          Properties:
-            Path: /workshop
-            Method: get
   addvetement:
     Type: AWS::Serverless::Function
     Properties:
