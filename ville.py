@@ -26,7 +26,7 @@ def handler(event, context):
                 'body': json.dumps({'error_message': 'id_user non transmis'})}
 
     update_ville = db.prepare(f"""
-    UPDATE "user" SET ville = {data['ville']} where id_user = {data['id_user']};
+    UPDATE "user" SET ville = '{data["ville"]}' where id_user = {data['id_user']};
     """)
 
     updation = update_ville()[1]
